@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+option go_package = "gihtub.com/mynreden/microservices-go/common/api/proto";
+
+package posts;
+
+service PostService {
+  rpc CreatePost(CreatePostRequest) returns (CreatePostResponse);
+  rpc GetPost(GetPostRequest) returns (GetPostResponse);
+  rpc GetPostsByUserId(GetPostsByUserIdRequest) returns (GetPostsByUserIdResponse);
+  rpc DeletePost(DeletePostRequest) returns (DeletePostResponse);
+}
+
+message CreatePostRequest {
+  string title = 1;
+  string content = 2;
+  string userId = 3;
+}
+
+message CreatePostResponse {
+  string id = 1;
+  string title = 2;
+  string content = 3;
+  string userId = 4;
+  string message = 5;
+}
+
+message DeletePostRequest {
+  string id = 1;
+}
+
+message DeletePostResponse {
+  string id = 1;
+  string message = 2;
+}
+
+message GetPostRequest {
+  string id = 1;
+}
+
+message GetPostResponse {
+  string id = 1;
+  string title = 2;
+  string content = 3;
+  string userId = 4;
+}
+
+message GetPostsByUserIdRequest {
+  string userId = 1;
+}
+
+message GetPostsByUserIdResponse {
+  repeated Post posts = 1;
+}
+
+message Post {
+  string id = 1;
+  string title = 2;
+  string content = 3;
+  string userId = 4;
+}
